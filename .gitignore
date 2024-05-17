@@ -136,3 +136,7 @@ cython_debug/
 
 # Wolfram Alpha Tool logs
 logs/
+
+# PyCharm specific
+.idea/
+*.iml
