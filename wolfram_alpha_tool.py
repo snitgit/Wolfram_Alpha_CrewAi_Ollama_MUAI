@@ -12,7 +12,7 @@ app_id = os.getenv('APP_ID')
 client = wolframalpha.Client(app_id)
 
 # Set up logging
-logging.basicConfig(filename='logs/wolfram_alpha_tool.log', level=logging.INFO)
+logging.basicConfig(filename='logs/wolfram_alpha_tool.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 def wolfram_alpha_tool(query, format='default', include_fields=None, exclude_fields=None, **kwargs):
@@ -52,13 +52,13 @@ def wolfram_alpha_tool(query, format='default', include_fields=None, exclude_fie
     except wolframalpha.exceptions.WolframAlphaException as e:
         # Handle errors from the API
         error_message = str(e)
-        logging.error(error_message)
+        logging.error(f"WolframAlphaException: {error_message}")
         return f"Error: {error_message}"
 
     except Exception as e:
         # Handle any other exceptions
         error_message = str(e)
-        logging.error(error_message)
+        logging.error(f"General Exception: {error_message}")
         return f"Error: {error_message}"
 
 

@@ -1,19 +1,30 @@
 import os
 from crewai import Agent, Task, Crew
+from crewai_tools import BaseTool
+from dotenv import load_dotenv
 from wolfram_alpha_tool import wolfram_alpha_tool
 
-os.environ["OPENAI_API_KEY"] = "YOUR_OPENAI_API_KEY"
+# Load environment variables from .env file
+load_dotenv()
+
+# Retrieve the OpenAI API key from the environment
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+
+# Ensure the API key is set
+if not OPENAI_API_KEY:
+    raise ValueError("OPENAI_API_KEY is not set in the environment variables.")
 
 
 # Define a custom tool using the wolfram_alpha_tool function
-class WolframAlphaTool:
-    name = "Wolfram Alpha Tool"
-    description = "Queries Wolfram Alpha for information."
+class WolframAlphaTool(BaseTool):
+    name: str = "Wolfram Alpha Tool"
+    description: str = "Queries Wolfram Alpha for information."
 
-    def _run(self, query):
+    def _run(self, query: str) -> str:
         return wolfram_alpha_tool(query)
 
 
+# Initialize the custom tool
 wolfram_tool = WolframAlphaTool()
 
 # Define the Researcher Agent
@@ -55,6 +66,6 @@ crew = Crew(
     verbose=True
 )
 
-# Kickoff the process
+# Kickoff the process and get the result
 result = crew.kickoff()
 print(result)
