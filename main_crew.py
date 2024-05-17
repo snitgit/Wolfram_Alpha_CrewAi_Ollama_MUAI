@@ -15,11 +15,11 @@ WOLFRAM_APP_ID = os.getenv('APP_ID')
 if not OPENAI_API_KEY or not WOLFRAM_APP_ID:
     raise ValueError("API keys not found in environment variables.")
 
-# Define the question to query Wolfram Alpha
+# The question to query Wolfram Alpha
 question = "What are the attributes of the moon's orbit?"
 
 
-# Define the Wolfram Alpha tool function
+# The Wolfram Alpha tool function
 def wolfram_alpha_tool(query: str) -> str:
     try:
         # Initialize Wolfram Alpha client
@@ -39,7 +39,7 @@ def wolfram_alpha_tool(query: str) -> str:
         return f"An error occurred: {str(e)}"
 
 
-# Define a custom tool using the wolfram_alpha_tool function
+# A custom tool using the wolfram_alpha_tool function
 class WolframAlphaTool(BaseTool):
     name: str = "Wolfram Alpha Tool"
     description: str = "Queries Wolfram Alpha for information."
@@ -54,7 +54,7 @@ class WolframAlphaTool(BaseTool):
 # Initialize the custom tool
 wolfram_tool = WolframAlphaTool()
 
-# Define the Researcher Agent
+# The Researcher Agent
 researcher = Agent(
     role='Researcher',
     goal=f'Fetch and analyze data from Wolfram Alpha about topic {question}',
@@ -63,7 +63,7 @@ researcher = Agent(
     verbose=True
 )
 
-# Define the Writer Agent
+# The Writer Agent
 writer = Agent(
     role='Writer',
     goal=f'Create a report based on the analysis about topic {question}.',
@@ -71,7 +71,7 @@ writer = Agent(
     verbose=True
 )
 
-# Define the Research Task
+# The Research Task
 research_task = Task(
     description=f'Query Wolfram Alpha for information on the specified topic: {question}.',
     expected_output=f'Analysis report about topic {question}',
@@ -79,14 +79,14 @@ research_task = Task(
     arguments={'query': question}
 )
 
-# Define the Writing Task
+# The Writing Task
 write_task = Task(
     description=f'Write a report based on the analysis from the Researcher about the topic: {question}.',
     expected_output='Formatted report',
     agent=writer
 )
 
-# Create the Crew
+# The Crew
 crew = Crew(
     agents=[researcher, writer],
     tasks=[research_task, write_task],
