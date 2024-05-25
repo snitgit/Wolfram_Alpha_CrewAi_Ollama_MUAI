@@ -16,7 +16,7 @@ if not OPENAI_API_KEY or not WOLFRAM_APP_ID:
     raise ValueError("API keys not found in environment variables.")
 
 # The question to query Wolfram Alpha
-question = "What are the attributes of the moon's orbit?"
+question = "What are the chemical properties of water?"
 
 
 # The Wolfram Alpha tool function
