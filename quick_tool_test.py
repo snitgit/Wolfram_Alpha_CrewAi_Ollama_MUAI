@@ -8,7 +8,7 @@ WOLFRAM_APP_ID = os.getenv('APP_ID')
 # Initialize the custom tool
 wolfram_tool = WolframAlphaTool()
 
-question = "What is the minimum distance from the earth to mars?"
+question = "calculate 3√1371742"
 
 # Run the tool
 try:
