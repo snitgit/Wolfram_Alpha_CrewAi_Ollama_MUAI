@@ -16,7 +16,33 @@ if not OPENAI_API_KEY or not WOLFRAM_APP_ID:
     raise ValueError("API keys not found in environment variables.")
 
 # The question to query Wolfram Alpha
-question = "What are the chemical properties of water?"
+question = ("""
+Mathematical calculations:
+What is the square root of 12345678?
+Unit conversions and comparisons:
+Convert 100 miles per hour to meters per second
+Compare the area of Texas to the area of France
+Scientific data and constants:
+What is the atomic mass of carbon?
+Show me the electron configuration of sodium
+Date and time calculations:
+How many days between July 4, 1776 and today?
+What day of the week was March 14, 1879?
+Statistical data:
+What is the population density of Tokyo?
+Show me the GDP per capita of Canada over the last 10 years
+Solving equations:
+Solve x^2 + 3x - 4 = 0
+Find the derivative of sin(x^2)
+Astronomy and space:
+What phase is the moon in today?
+Distance between Earth and Mars
+Nutrition information:
+How many calories are in a medium apple?
+Compare nutritional value of spinach and kale
+Fun or unusual queries:
+Convert 100 to Roman numerals
+""")
 
 
 # The Wolfram Alpha tool function
