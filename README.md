@@ -40,7 +40,7 @@ OPENAI_API_BASE=http://omega.mahidol.ac.th:11434 is temporary solution that may 
 To see the example, run:
 
 ```bash
-python main_crew.py
+python example_query_2agents.py
 ```
 
 Or do a quick tool test:
